@@ -44,7 +44,15 @@ namespace TKH3DCoffee
             transform.position = target.position - transform.forward * dst * currentZoom;
             transform.LookAt(target.position);
 
-            float yawInput = Input.GetAxisRaw("Horizontal");
+            float yawInput = 0f;
+            if (Input.GetKey(KeyCode.Q))
+            {
+                yawInput = 1f;
+            }
+            else if (Input.GetKey(KeyCode.E)) 
+            {
+                yawInput = -1f;
+            }
             transform.RotateAround(target.position, Vector3.up, -yawInput * yawSpeed * Time.deltaTime);
         }
 

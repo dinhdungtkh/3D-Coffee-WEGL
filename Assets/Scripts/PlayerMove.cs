@@ -1,6 +1,5 @@
-using System.Collections;
+﻿using System.Collections;
 using TKH3DCoffee;
-using Unity.Burst.CompilerServices;
 using UnityEngine;
 
 public class PlayerMove : Character
@@ -35,14 +34,24 @@ public class PlayerMove : Character
 
     private void HandleMovement()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) || Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
         {
-            Ray ray = cam.ScreenPointToRay(Input.mousePosition);
+            Ray ray;
+            if (Input.touchCount > 0)
+            {
+                ray = cam.ScreenPointToRay(Input.GetTouch(0).position);
+            }
+            else
+            {
+                ray = cam.ScreenPointToRay(Input.mousePosition);
+            }
+
             RaycastHit hit;
 
             if (Physics.Raycast(ray, out hit, movementMask))
             {
                 MoveTo(hit.point);
+
                 if (clickEffect != null)
                 {
                     Instantiate(clickEffect, hit.point + new Vector3(0, 0.1f, 0), clickEffect.transform.rotation);
@@ -50,22 +59,14 @@ public class PlayerMove : Character
                 SetFocus(null);
             }
         }
+
     }
 
     private void HandleInteraction()
     {
         if (Input.GetMouseButtonDown(1))
         {
-           // Ray ray = cam.ScreenPointToRay(Input.mousePosition);
-           // RaycastHit hit;
-
-            //if (Physics.Raycast(ray, out hit, 100f, interactionMask))
-            //{
-            
-            //    Chair chair = hit.collider.GetComponent<Chair>();
-            //    SetFocus(chair);
-            //    InteractWithChair(chair);
-            //}
+            StandUp();
         }
     }
 
@@ -80,7 +81,7 @@ public class PlayerMove : Character
             }
         }
     }
- 
+
     private IEnumerator WaitAndStand()
     {
         yield return new WaitForSeconds(2);
