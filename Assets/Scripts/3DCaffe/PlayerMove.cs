@@ -1,6 +1,9 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using TKH3DCoffee;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerMove : Character
 {
@@ -16,10 +19,13 @@ public class PlayerMove : Character
     private Interactable focus;
     [Header("Movement")]
     [SerializeField] private ParticleSystem clickEffect;
+    [SerializeField]
+    private Button standBtn;
 
     protected override void Start()
     {
         base.Start();
+        standBtn.onClick.AddListener(() => StandUp());
     }
 
     protected override void Update()
@@ -51,7 +57,6 @@ public class PlayerMove : Character
             if (Physics.Raycast(ray, out hit, movementMask))
             {
                 MoveTo(hit.point);
-
                 if (clickEffect != null)
                 {
                     Instantiate(clickEffect, hit.point + new Vector3(0, 0.1f, 0), clickEffect.transform.rotation);
@@ -80,12 +85,6 @@ public class PlayerMove : Character
                 InteractWithChair(chair);
             }
         }
-    }
-
-    private IEnumerator WaitAndStand()
-    {
-        yield return new WaitForSeconds(2);
-        StandUp();
     }
 
     protected override void StandUp()

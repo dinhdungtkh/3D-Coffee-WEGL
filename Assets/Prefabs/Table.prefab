@@ -136,6 +136,22 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 64238042239055010, guid: 24785933d7ceaad4a800f09511c371db, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 64257739606776832, guid: 24785933d7ceaad4a800f09511c371db, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 64604770891782404, guid: 24785933d7ceaad4a800f09511c371db, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 64798870577824642, guid: 24785933d7ceaad4a800f09511c371db, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -154,9 +170,13 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1558396981731744909}
     m_Modifications:
+    - target: {fileID: 1893417901068315718, guid: b247947db9502f3498448fcf79bacaab, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 1946899821627542169, guid: b247947db9502f3498448fcf79bacaab, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.16
+      value: 2.6
       objectReference: {fileID: 0}
     - target: {fileID: 1946899821627542169, guid: b247947db9502f3498448fcf79bacaab, type: 3}
       propertyPath: m_LocalPosition.y
@@ -194,9 +214,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2655015278453776660, guid: b247947db9502f3498448fcf79bacaab, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4278318182119893562, guid: b247947db9502f3498448fcf79bacaab, type: 3}
+      propertyPath: chairCollider
+      value: 
+      objectReference: {fileID: 8241127748100860154}
+    - target: {fileID: 4686002340993314617, guid: b247947db9502f3498448fcf79bacaab, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 5327052657426457107, guid: b247947db9502f3498448fcf79bacaab, type: 3}
       propertyPath: m_Name
       value: Chair (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5327052657426457107, guid: b247947db9502f3498448fcf79bacaab, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 5327052657426457107, guid: b247947db9502f3498448fcf79bacaab, type: 3}
       propertyPath: m_IsActive
@@ -212,6 +248,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1946899821627542169, guid: b247947db9502f3498448fcf79bacaab, type: 3}
   m_PrefabInstance: {fileID: 2789126388442433132}
   m_PrefabAsset: {fileID: 0}
+--- !u!65 &8241127748100860154 stripped
+BoxCollider:
+  m_CorrespondingSourceObject: {fileID: 6118889592535723670, guid: b247947db9502f3498448fcf79bacaab, type: 3}
+  m_PrefabInstance: {fileID: 2789126388442433132}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &3806311557220454518
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -220,6 +261,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1558396981731744909}
     m_Modifications:
+    - target: {fileID: 1893417901068315718, guid: b247947db9502f3498448fcf79bacaab, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 1946899821627542169, guid: b247947db9502f3498448fcf79bacaab, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.13000011
@@ -230,7 +275,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1946899821627542169, guid: b247947db9502f3498448fcf79bacaab, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1.91
+      value: 2.52
       objectReference: {fileID: 0}
     - target: {fileID: 1946899821627542169, guid: b247947db9502f3498448fcf79bacaab, type: 3}
       propertyPath: m_LocalRotation.w
@@ -260,9 +305,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2655015278453776660, guid: b247947db9502f3498448fcf79bacaab, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4278318182119893562, guid: b247947db9502f3498448fcf79bacaab, type: 3}
+      propertyPath: chairCollider
+      value: 
+      objectReference: {fileID: 6933315384325701344}
+    - target: {fileID: 4686002340993314617, guid: b247947db9502f3498448fcf79bacaab, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 5327052657426457107, guid: b247947db9502f3498448fcf79bacaab, type: 3}
       propertyPath: m_Name
       value: Chair
+      objectReference: {fileID: 0}
+    - target: {fileID: 5327052657426457107, guid: b247947db9502f3498448fcf79bacaab, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -274,6 +335,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1946899821627542169, guid: b247947db9502f3498448fcf79bacaab, type: 3}
   m_PrefabInstance: {fileID: 3806311557220454518}
   m_PrefabAsset: {fileID: 0}
+--- !u!65 &6933315384325701344 stripped
+BoxCollider:
+  m_CorrespondingSourceObject: {fileID: 6118889592535723670, guid: b247947db9502f3498448fcf79bacaab, type: 3}
+  m_PrefabInstance: {fileID: 3806311557220454518}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6786228789022662816
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -282,6 +348,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1558396981731744909}
     m_Modifications:
+    - target: {fileID: 1893417901068315718, guid: b247947db9502f3498448fcf79bacaab, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 1946899821627542169, guid: b247947db9502f3498448fcf79bacaab, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.119999886
@@ -292,7 +362,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1946899821627542169, guid: b247947db9502f3498448fcf79bacaab, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -2.14
+      value: -2.73
       objectReference: {fileID: 0}
     - target: {fileID: 1946899821627542169, guid: b247947db9502f3498448fcf79bacaab, type: 3}
       propertyPath: m_LocalRotation.w
@@ -322,15 +392,36 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2655015278453776660, guid: b247947db9502f3498448fcf79bacaab, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4278318182119893562, guid: b247947db9502f3498448fcf79bacaab, type: 3}
+      propertyPath: chairCollider
+      value: 
+      objectReference: {fileID: 776640633817566774}
+    - target: {fileID: 4686002340993314617, guid: b247947db9502f3498448fcf79bacaab, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 5327052657426457107, guid: b247947db9502f3498448fcf79bacaab, type: 3}
       propertyPath: m_Name
       value: Chair (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5327052657426457107, guid: b247947db9502f3498448fcf79bacaab, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b247947db9502f3498448fcf79bacaab, type: 3}
+--- !u!65 &776640633817566774 stripped
+BoxCollider:
+  m_CorrespondingSourceObject: {fileID: 6118889592535723670, guid: b247947db9502f3498448fcf79bacaab, type: 3}
+  m_PrefabInstance: {fileID: 6786228789022662816}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4983585048156973625 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1946899821627542169, guid: b247947db9502f3498448fcf79bacaab, type: 3}
@@ -344,9 +435,13 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1558396981731744909}
     m_Modifications:
+    - target: {fileID: 1893417901068315718, guid: b247947db9502f3498448fcf79bacaab, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 1946899821627542169, guid: b247947db9502f3498448fcf79bacaab, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.88
+      value: -2.58
       objectReference: {fileID: 0}
     - target: {fileID: 1946899821627542169, guid: b247947db9502f3498448fcf79bacaab, type: 3}
       propertyPath: m_LocalPosition.y
@@ -384,15 +479,36 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2655015278453776660, guid: b247947db9502f3498448fcf79bacaab, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4278318182119893562, guid: b247947db9502f3498448fcf79bacaab, type: 3}
+      propertyPath: chairCollider
+      value: 
+      objectReference: {fileID: 2537669002596703947}
+    - target: {fileID: 4686002340993314617, guid: b247947db9502f3498448fcf79bacaab, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 5327052657426457107, guid: b247947db9502f3498448fcf79bacaab, type: 3}
       propertyPath: m_Name
       value: Chair (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5327052657426457107, guid: b247947db9502f3498448fcf79bacaab, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b247947db9502f3498448fcf79bacaab, type: 3}
+--- !u!65 &2537669002596703947 stripped
+BoxCollider:
+  m_CorrespondingSourceObject: {fileID: 6118889592535723670, guid: b247947db9502f3498448fcf79bacaab, type: 3}
+  m_PrefabInstance: {fileID: 8637118110704791645}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7843566563923294916 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1946899821627542169, guid: b247947db9502f3498448fcf79bacaab, type: 3}

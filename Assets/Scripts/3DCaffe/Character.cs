@@ -10,31 +10,54 @@ public class Character : MonoBehaviour
     protected NavMeshAgent navmeshAgent;
     [SerializeField]
     protected bool isSitting = false;
+    [SerializeField] private string currentanim;
     [SerializeField]
     protected Transform chairPosition;
 
     [SerializeField]
     protected Transform characterTransform;
 
+    [SerializeField] 
+    public string currentAnimName = "Idle";
+    [SerializeField]
+    private float currentSpeed;
+    public float CharacterSpeed { get => currentSpeed; }
 
     protected virtual void Start()
     {
         navmeshAgent = GetComponent<NavMeshAgent>();
         characterTransform = GetComponent<Transform>();
+
     }
 
     protected virtual void Update()
     {
+
+        currentSpeed = navmeshAgent.velocity.magnitude / navmeshAgent.speed;
+        //   Debug.Log($"IsSitting: {isSitting}, Speed: {navmeshAgent.velocity.magnitude}");
         if (!isSitting)
         {
-            animator.SetFloat("speedPercent", navmeshAgent.velocity.magnitude / navmeshAgent.speed, .1f, Time.deltaTime);
+            animator.SetFloat("speedPercent", currentSpeed, 0.03f, Time.deltaTime);
         }
+       
     }
 
     protected virtual void MoveTo(Vector3 position)
     {
         navmeshAgent.SetDestination(position);
+       
     }
+
+    protected void ChangeAnim(string newAnimName)
+    {
+        if (currentAnimName != newAnimName)
+        {
+            animator.ResetTrigger(currentAnimName);
+            currentAnimName = newAnimName;
+            animator.SetTrigger(newAnimName);
+        }
+    }
+
 
     protected virtual IEnumerator Sit(Chair chair)
     {
@@ -48,8 +71,10 @@ public class Character : MonoBehaviour
             yield return new WaitUntil(() => IsFinishMove() == true);
             this.characterTransform.rotation = Quaternion.Euler(characterTransform.rotation.x, rotationAngle.y,
                                       characterTransform.rotation.z);
+            
             navmeshAgent.isStopped = true;
             OnSitDown();
+          
             isSitting = true;
             chair.fill = true;
             chair.SetOccupyingCharacter(this);
@@ -63,9 +88,8 @@ public class Character : MonoBehaviour
 
     protected virtual void StandUp()
     {
-        isSitting = false;
-        navmeshAgent.isStopped = false;
-        OnExit();
+        StartCoroutine(OnExit());
+       
         if (chairPosition != null)
         {
             Chair chair = chairPosition.GetComponent<Chair>();
@@ -74,6 +98,8 @@ public class Character : MonoBehaviour
                 chair.ClearOccupyingCharacter();
             }
         }
+        isSitting = false;
+        navmeshAgent.isStopped = false;
     }
 
     protected virtual void InteractWithChair(Chair chair)
@@ -85,16 +111,18 @@ public class Character : MonoBehaviour
         }
     }
 
-
     protected virtual void OnSitDown()
     {
-        animator.SetTrigger("SitDown");
+        ChangeAnim("SitDown");
 
     }
 
-    protected virtual void OnExit()
+
+
+    protected IEnumerator  OnExit()
     {
-        animator.SetTrigger("StandUp");
+        ChangeAnim("StandUp");
+        yield return new WaitWhile(() => animator.GetCurrentAnimatorStateInfo(0).normalizedTime <= 1.0f);
     }
 
 

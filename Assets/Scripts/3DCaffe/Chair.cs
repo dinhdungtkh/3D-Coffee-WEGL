@@ -15,6 +15,8 @@ public class Chair : MonoBehaviour
     [SerializeField]
     public bool fill;
     private Character occupyingCharacter;
+    [SerializeField]
+    private Collider chairCollider;
 
     public void Awake()
     {
@@ -33,13 +35,15 @@ public class Chair : MonoBehaviour
     public void SetOccupyingCharacter(Character character)
     {
         occupyingCharacter = character;
-        fill = true; 
+        fill = true;
+       // chairCollider.isTrigger = false;
     }
 
     public void ClearOccupyingCharacter()
     {
         occupyingCharacter = null;
-        fill = false; 
+        fill = false;
+       // chairCollider.isTrigger = true;
     }
 
 }
