@@ -12,7 +12,7 @@ public class PlayerMove : Character
     public LayerMask interactionMask;
     [SerializeField]
     private Camera cam;
-
+    public string currentInputType;
     public delegate void OnFocusChanged(Interactable newFocus);
     public OnFocusChanged onFocusChangedCallback;
 
@@ -40,31 +40,32 @@ public class PlayerMove : Character
 
     private void HandleMovement()
     {
-        if (Input.GetMouseButtonDown(0) || Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
-        {
-            Ray ray;
-            if (Input.touchCount > 0)
+        if (currentInputType == "joystick") { 
+            if (Input.GetMouseButtonDown(0) || Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
             {
-                ray = cam.ScreenPointToRay(Input.GetTouch(0).position);
-            }
-            else
-            {
-                ray = cam.ScreenPointToRay(Input.mousePosition);
-            }
-
-            RaycastHit hit;
-
-            if (Physics.Raycast(ray, out hit, movementMask))
-            {
-                MoveTo(hit.point);
-                if (clickEffect != null)
+                Ray ray;
+                if (Input.touchCount > 0)
                 {
-                    Instantiate(clickEffect, hit.point + new Vector3(0, 0.1f, 0), clickEffect.transform.rotation);
+                    ray = cam.ScreenPointToRay(Input.GetTouch(0).position);
                 }
-                SetFocus(null);
-            }
-        }
+                else
+                {
+                    ray = cam.ScreenPointToRay(Input.mousePosition);
+                }
 
+                RaycastHit hit;
+
+                if (Physics.Raycast(ray, out hit, movementMask))
+                {
+                    MoveTo(hit.point);
+                    if (clickEffect != null)
+                    {
+                        Instantiate(clickEffect, hit.point + new Vector3(0, 0.1f, 0), clickEffect.transform.rotation);
+                    }
+                    SetFocus(null);
+                }
+            }
+    }
     }
 
     private void HandleInteraction()
@@ -79,11 +80,8 @@ public class PlayerMove : Character
     {
         if (other.tag == "Chair")
         {
-            if (1 > 0)
-            {
                 Chair chair = other.GetComponentInParent<Chair>();
                 InteractWithChair(chair);
-            }
         }
     }
 

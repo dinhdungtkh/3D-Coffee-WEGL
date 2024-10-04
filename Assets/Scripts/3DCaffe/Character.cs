@@ -10,7 +10,6 @@ public class Character : MonoBehaviour
     protected NavMeshAgent navmeshAgent;
     [SerializeField]
     protected bool isSitting = false;
-    [SerializeField] private string currentanim;
     [SerializeField]
     protected Transform chairPosition;
 
@@ -34,12 +33,13 @@ public class Character : MonoBehaviour
     {
 
         currentSpeed = navmeshAgent.velocity.magnitude / navmeshAgent.speed;
+        //Debug.Log(currentSpeed);    
         //   Debug.Log($"IsSitting: {isSitting}, Speed: {navmeshAgent.velocity.magnitude}");
         if (!isSitting)
         {
             animator.SetFloat("speedPercent", currentSpeed, 0.03f, Time.deltaTime);
         }
-
+        
     }
 
     protected virtual void MoveTo(Vector3 position)
@@ -69,21 +69,41 @@ public class Character : MonoBehaviour
             Vector3 rotationAngle = rotation.eulerAngles;
             MoveTo(frontPoint);
             yield return new WaitUntil(() => IsFinishMove() == true);
+            this.characterTransform.position = chairPosition.position + new Vector3(0,0.03f,0);
             this.characterTransform.rotation = Quaternion.Euler(characterTransform.rotation.x, rotationAngle.y,
                                       characterTransform.rotation.z);
 
+            Vector3 tempPos = Vector3.zero;
             navmeshAgent.isStopped = true;
             OnSitDown();
-
+            yield return new WaitWhile(() => animator.GetCurrentAnimatorStateInfo(0).normalizedTime <= 3.0f);
             isSitting = true;
             chair.fill = true;
             chair.SetOccupyingCharacter(this);
+           
+            if (gameObject.tag == "Bot"  && 0 < 1 )
+            {
+                Wait();
+                chair.ClearOccupyingCharacter();
+               
+                isSitting = false;
+                ChangeAnim("StandUp");
+
+                animator.SetBool("StandUp", true);
+                yield return new WaitWhile(() => animator.GetCurrentAnimatorStateInfo(0).normalizedTime <= 1.0f);
+                navmeshAgent.isStopped = false;
+                navmeshAgent.ResetPath();
+               
+                //this.characterTransform.position = tempPos;
+                // ChangeAnim("Idle");
+
+            }
         }
     }
 
     private IEnumerator Wait()
     {
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(3f);
     }
 
     protected virtual void StandUp()
@@ -114,7 +134,7 @@ public class Character : MonoBehaviour
     protected virtual void OnSitDown()
     {
         ChangeAnim("SitDown");
-
+        animator.SetBool("sitDown", true);
     }
 
 
@@ -122,6 +142,7 @@ public class Character : MonoBehaviour
     protected IEnumerator OnExit()
     {
         ChangeAnim("StandUp");
+        animator.SetBool("standUp", true);
         yield return new WaitWhile(() => animator.GetCurrentAnimatorStateInfo(0).normalizedTime <= 1.0f);
     }
 

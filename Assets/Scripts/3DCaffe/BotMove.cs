@@ -6,31 +6,26 @@ using UnityEngine.AI;
 public class BotMove : Character
 {
     public Table table;
-    [SerializeField]
-    private float updateInterval = 5f;
-    private float nextUpdateTime = 0f;
 
     public Chair targetChair;
     public Transform[] points;
-    private int destPoint = 0;
-    private float sitDuration = 5f;
-    private float sitStartTime;
 
-    public float moveSpeed = 3f;
-    public Vector3 randomPos;
     // --------------------------------------------------------------------- 
     public float radiusRange;
     public Transform centrePoint;
-
+    // ---------------------------------------------------------------------
+    
     protected override void Start()
     {
         base.Start();
+        StopMove();
         StartCoroutine(BotBehavior());
     }
 
     protected override void Update()
     {
         base.Update();
+        
     }
 
     public Vector3 GetRandomPosition()
@@ -52,14 +47,15 @@ public class BotMove : Character
 
         return randomPosition;
     }
-    private void FindTargetChair()
+    public Chair FindTargetChair()
     {
         List<Chair> availableChairs = table.GetAvailableChairs();
-        if (availableChairs.Count > 0)
-        {
+        if (availableChairs.Count > 0 )
+        { 
             targetChair = availableChairs[Random.Range(0, availableChairs.Count)];
             MoveTo(targetChair.transform.position);
         }
+        return targetChair;
     }
 
     protected override void StandUp()
@@ -70,32 +66,33 @@ public class BotMove : Character
 
     protected void FixedUpdate()
     {
-        if (navmeshAgent.remainingDistance <= navmeshAgent.stoppingDistance)
+        if (targetChair != null && currentAnimName != "StandUp")
         {
-            Vector3 point = GetRandomPosition();
-            Debug.DrawRay(point, Vector3.up, Color.blue, 1.0f);
-            MoveTo(point);
+            MoveTo(targetChair.transform.position);
         }
+        else
+            StartCoroutine(FindNewTarget());
+        
     }
 
     private IEnumerator BotBehavior()
     {
-        while (true)
-        {
             MoveTo(GetRandomPosition());
-            yield return new WaitUntil(() => IsFinishMove());
-
             yield return new WaitForSeconds(Random.Range(4f, 5f));
-            FindTargetChair();
-            yield return new WaitUntil(() => IsFinishMove());
-
-            yield return new WaitForSeconds(3f);
-            StandUp();
-        }
     }
 
+    private IEnumerator FindNewTarget()
+    {
+        List<Chair> availableChairs = table.GetAvailableChairs();
+        if (availableChairs.Count > 0)
+        {
+            targetChair = availableChairs[Random.Range(0, availableChairs.Count)];
+            MoveTo(targetChair.transform.position);
+        }
+        yield return new WaitUntil(() => IsFinishMove());
+    }
 
-    private void StopMove()
+    public void StopMove()
     {
         MoveTo(this.transform.position);
         ChangeAnim("Idle");
@@ -108,16 +105,6 @@ public class BotMove : Character
             targetChair = other.GetComponentInParent<Chair>();
             InteractWithChair(targetChair);
         }
-    }
-
-
-    public bool IsFinishMove()
-    {
-        if (!navmeshAgent.pathPending && navmeshAgent.remainingDistance <= navmeshAgent.stoppingDistance)
-        {
-            return true;
-        }
-        return false;
     }
 
 }
