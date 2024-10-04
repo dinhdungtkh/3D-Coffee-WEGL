@@ -10,7 +10,7 @@ public class Chair : MonoBehaviour
     protected bool isEmpty;
     [SerializeField]
     private Transform chairFrontposition;
-   
+
     public Transform chairPosition;
     [SerializeField]
     public bool fill;
@@ -22,7 +22,7 @@ public class Chair : MonoBehaviour
     {
         fill = false;
     }
-    public  Transform getchairPosition() {  return this.transform; }
+    public Transform getchairPosition() { return this.transform; }
     public Transform getchairFrontPosition()
     {
         return chairFrontposition;
@@ -36,14 +36,14 @@ public class Chair : MonoBehaviour
     {
         occupyingCharacter = character;
         fill = true;
-       // chairCollider.isTrigger = false;
+        // chairCollider.isTrigger = false;
     }
 
     public void ClearOccupyingCharacter()
     {
         occupyingCharacter = null;
         fill = false;
-       // chairCollider.isTrigger = true;
+        // chairCollider.isTrigger = true;
     }
 
 }

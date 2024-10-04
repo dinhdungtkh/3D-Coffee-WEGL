@@ -17,7 +17,7 @@ public class Character : MonoBehaviour
     [SerializeField]
     protected Transform characterTransform;
 
-    [SerializeField] 
+    [SerializeField]
     public string currentAnimName = "Idle";
     [SerializeField]
     private float currentSpeed;
@@ -39,13 +39,13 @@ public class Character : MonoBehaviour
         {
             animator.SetFloat("speedPercent", currentSpeed, 0.03f, Time.deltaTime);
         }
-       
+
     }
 
     protected virtual void MoveTo(Vector3 position)
     {
         navmeshAgent.SetDestination(position);
-       
+
     }
 
     protected void ChangeAnim(string newAnimName)
@@ -71,10 +71,10 @@ public class Character : MonoBehaviour
             yield return new WaitUntil(() => IsFinishMove() == true);
             this.characterTransform.rotation = Quaternion.Euler(characterTransform.rotation.x, rotationAngle.y,
                                       characterTransform.rotation.z);
-            
+
             navmeshAgent.isStopped = true;
             OnSitDown();
-          
+
             isSitting = true;
             chair.fill = true;
             chair.SetOccupyingCharacter(this);
@@ -89,7 +89,7 @@ public class Character : MonoBehaviour
     protected virtual void StandUp()
     {
         StartCoroutine(OnExit());
-       
+
         if (chairPosition != null)
         {
             Chair chair = chairPosition.GetComponent<Chair>();
@@ -105,9 +105,9 @@ public class Character : MonoBehaviour
     protected virtual void InteractWithChair(Chair chair)
     {
         if (chair != null)
-        {   
+        {
             if (!chair.IsOccupied())
-            StartCoroutine(Sit(chair));
+                StartCoroutine(Sit(chair));
         }
     }
 
@@ -119,7 +119,7 @@ public class Character : MonoBehaviour
 
 
 
-    protected IEnumerator  OnExit()
+    protected IEnumerator OnExit()
     {
         ChangeAnim("StandUp");
         yield return new WaitWhile(() => animator.GetCurrentAnimatorStateInfo(0).normalizedTime <= 1.0f);

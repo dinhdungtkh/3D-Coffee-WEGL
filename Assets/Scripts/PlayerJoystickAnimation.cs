@@ -7,7 +7,7 @@ public class PlayerJoystickAnimation : MonoBehaviour
    
     [SerializeField] private PLayerMoveJoystick moveJoystick;
     [SerializeField] private CharacterController character;
-    [SerializeField] private float animSmoothTime = 0.03f;
+    //[SerializeField] private float animSmoothTime = 0.03f;
     private void StatusAnim()
     {
        

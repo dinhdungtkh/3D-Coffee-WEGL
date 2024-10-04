@@ -5,15 +5,15 @@ using UnityEngine.AI;
 
 public class BotMove : Character
 {
-    public Table table; 
+    public Table table;
     [SerializeField]
-    private float updateInterval = 5f; 
+    private float updateInterval = 5f;
     private float nextUpdateTime = 0f;
 
     public Chair targetChair;
     public Transform[] points;
     private int destPoint = 0;
-    private float sitDuration = 5f; 
+    private float sitDuration = 5f;
     private float sitStartTime;
 
     public float moveSpeed = 3f;
@@ -28,7 +28,7 @@ public class BotMove : Character
         StartCoroutine(BotBehavior());
     }
 
-    protected override void Update() 
+    protected override void Update()
     {
         base.Update();
     }
@@ -64,7 +64,7 @@ public class BotMove : Character
 
     protected override void StandUp()
     {
-        
+
         base.StandUp();
     }
 
@@ -73,8 +73,8 @@ public class BotMove : Character
         if (navmeshAgent.remainingDistance <= navmeshAgent.stoppingDistance)
         {
             Vector3 point = GetRandomPosition();
-                Debug.DrawRay(point, Vector3.up, Color.blue, 1.0f);
-                MoveTo(point);
+            Debug.DrawRay(point, Vector3.up, Color.blue, 1.0f);
+            MoveTo(point);
         }
     }
 
@@ -88,9 +88,9 @@ public class BotMove : Character
             yield return new WaitForSeconds(Random.Range(4f, 5f));
             FindTargetChair();
             yield return new WaitUntil(() => IsFinishMove());
-            
+
             yield return new WaitForSeconds(3f);
-            StandUp(); 
+            StandUp();
         }
     }
 
@@ -106,11 +106,11 @@ public class BotMove : Character
         if (other.CompareTag("Chair"))
         {
             targetChair = other.GetComponentInParent<Chair>();
-            InteractWithChair(targetChair); 
+            InteractWithChair(targetChair);
         }
     }
 
-    
+
     public bool IsFinishMove()
     {
         if (!navmeshAgent.pathPending && navmeshAgent.remainingDistance <= navmeshAgent.stoppingDistance)
