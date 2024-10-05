@@ -5,7 +5,10 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Cofffe3D.unity
     guid: 3a840e2949888ba4bab2992783d49d90
+  - enabled: 1
+    path: Assets/Scenes/Cofffe3D 2.unity
+    guid: 53f7ea9af65914447bb2564bd8ca597b
   m_configObjects: {}
