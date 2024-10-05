@@ -187,6 +187,7 @@ MonoBehaviour:
   chairFrontposition: {fileID: 8609975255712332303}
   chairPosition: {fileID: 1946899821627542169}
   fill: 0
+  chairCollider: {fileID: 6118889592535723670}
 --- !u!1001 &1893417901068177104
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -237,6 +238,26 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 459288, guid: f710382517201604d939dd1e30c50b66, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2300480, guid: f710382517201604d939dd1e30c50b66, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 64084451251330748, guid: f710382517201604d939dd1e30c50b66, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 64341942290185190, guid: f710382517201604d939dd1e30c50b66, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 64727388790175380, guid: f710382517201604d939dd1e30c50b66, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 64856509702005328, guid: f710382517201604d939dd1e30c50b66, type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

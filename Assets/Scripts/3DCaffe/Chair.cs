@@ -14,6 +14,7 @@ public class Chair : MonoBehaviour
     public Transform chairPosition;
     [SerializeField]
     public bool fill;
+    [SerializeField]
     private Character occupyingCharacter;
     [SerializeField]
     private Collider chairCollider;
@@ -36,14 +37,14 @@ public class Chair : MonoBehaviour
     {
         occupyingCharacter = character;
         fill = true;
-        // chairCollider.isTrigger = false;
+        chairCollider.isTrigger = false;
     }
 
     public void ClearOccupyingCharacter()
     {
         occupyingCharacter = null;
         fill = false;
-        // chairCollider.isTrigger = true;
+        chairCollider.isTrigger = true;
     }
 
 }

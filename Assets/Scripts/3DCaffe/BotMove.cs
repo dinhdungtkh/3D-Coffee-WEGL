@@ -8,8 +8,6 @@ public class BotMove : Character
     public Table table;
 
     public Chair targetChair;
-    public Transform[] points;
-
     // --------------------------------------------------------------------- 
     public float radiusRange;
     public Transform centrePoint;
@@ -25,7 +23,6 @@ public class BotMove : Character
     protected override void Update()
     {
         base.Update();
-        
     }
 
     public Vector3 GetRandomPosition()
@@ -86,9 +83,23 @@ public class BotMove : Character
         List<Chair> availableChairs = table.GetAvailableChairs();
         if (availableChairs.Count > 0)
         {
-            targetChair = availableChairs[Random.Range(0, availableChairs.Count)];
+             targetChair = availableChairs[Random.Range(0, availableChairs.Count)];
+            if (targetChair.IsOccupied())
+            {
+                availableChairs.Remove(targetChair);
+                if (availableChairs.Count > 0)
+                {
+                    targetChair = availableChairs[Random.Range(0, availableChairs.Count)];
+                }
+                else
+                {
+                    yield break; 
+                }
+            }
+
             MoveTo(targetChair.transform.position);
         }
+
         yield return new WaitUntil(() => IsFinishMove());
     }
 
