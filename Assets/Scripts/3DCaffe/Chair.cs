@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using TKH3DCoffee;
-using UnityEditor.UI;
 using UnityEngine;
 
 public class Chair : MonoBehaviour

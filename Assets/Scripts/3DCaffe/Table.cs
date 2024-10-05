@@ -7,6 +7,8 @@ public class Table : MonoBehaviour
     public List<Chair> chairs;
     [SerializeField]
     protected List<Chair> availableChairs;
+    [SerializeField]
+    private List<Chair> occupiedChairs = new List<Chair>();
 
     private void Awake()
     {
@@ -23,6 +25,35 @@ public class Table : MonoBehaviour
             {
                 availableChairs.Add(chair);
             }
+        }
+    }
+    public Chair GetRandomAvailableChair()
+    {
+        UpdateChairStatus(); // Ensure the status of the chairs is up-to-date
+        if (availableChairs.Count > 0)
+        {
+            Chair selectedChair = availableChairs[Random.Range(0, availableChairs.Count)];
+            MarkChairAsOccupied(selectedChair);
+            return selectedChair;
+        }
+        return null; // No available chair
+    }
+
+    public void MarkChairAsOccupied(Chair chair)
+    {
+        if (!occupiedChairs.Contains(chair))
+        {
+            occupiedChairs.Add(chair);
+            availableChairs.Remove(chair);
+        }
+    }
+
+    public void ReleaseChair(Chair chair)
+    {
+        if (occupiedChairs.Contains(chair))
+        {
+            occupiedChairs.Remove(chair);
+            availableChairs.Add(chair);
         }
     }
 

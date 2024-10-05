@@ -5,10 +5,8 @@ using UnityEngine.AI;
 
 public class BotChar : Character
 {
-    public static List<Chair> occupiedChairs = new List<Chair>();
     public Table table;
     public Chair targetChair;
-    public Transform[] points;
 
     public float radiusRange;
     public Transform centrePoint;
@@ -49,7 +47,8 @@ public class BotChar : Character
 
     private IEnumerator FindAndMoveToChair()
     {
-        targetChair = FindTargetChair();
+        targetChair = table.GetRandomAvailableChair();
+
         if (targetChair != null)
         {
             MoveTo(targetChair.transform.position);
@@ -71,8 +70,8 @@ public class BotChar : Character
             this.characterTransform.rotation = Quaternion.Euler(characterTransform.rotation.x, rotationAngle.y, characterTransform.rotation.z);
             navmeshAgent.isStopped = true;
             ChangeAnim("SitDown");
+
             isSitting = true;
-            occupiedChairs.Add(targetChair);
             targetChair.fill = true;
         }
         yield return new WaitForSeconds(3f);
@@ -95,28 +94,12 @@ public class BotChar : Character
         return randomPosition;
     }
 
-    public Chair FindTargetChair()
-    {
-        List<Chair> availableChairs = table.GetAvailableChairs();
-        foreach (Chair chair in availableChairs)
-        {
-            if (!occupiedChairs.Contains(chair))
-            {
-                occupiedChairs.Add(chair);
-                targetChair = chair;
-                return targetChair;
-            }
-        }
-        return null;
-    }
-
     protected override void StandUp()
     {
         base.StandUp();
         if (targetChair != null)
         {
-            occupiedChairs.Remove(targetChair);
-            targetChair.ClearOccupyingCharacter();
+            table.ReleaseChair(targetChair);
         }
         isSitting = false;
         targetChair = null;
